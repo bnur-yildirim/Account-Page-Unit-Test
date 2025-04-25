@@ -27,15 +27,53 @@ describe('Validation Tests', () => {
   });
 
   // Email Tests
-      test('validateEmail - empty', () => {
-        expect(validateEmail('')).toBe('Email is required');
-      });
-    
-      test('validateEmail - invalid format', () => {
-        expect(validateEmail('test@wrong')).toBe('Invalid email format');
-      });
-    
-      test('validateEmail - valid', () => {
-        expect(validateEmail('test@example.com')).toBe('');
-      });
+  test('validateEmail - empty', () => {
+    expect(validateEmail('')).toBe('Email is required');
+  });
+
+  test('validateEmail - invalid format', () => {
+    expect(validateEmail('test@wrong')).toBe('Invalid email format');
+  });
+
+  test('validateEmail - valid', () => {
+    expect(validateEmail('test@example.com')).toBe('');
+  });
+
+  // Password Tests
+  test('validatePassword - empty', () => {
+    expect(validatePassword('')).toBe('Password is required');
+  });
+
+  test('validatePassword - no uppercase', () => {
+    expect(validatePassword('password1!')).toBe('Password must contain an uppercase letter');
+  });
+
+  test('validatePassword - no lowercase', () => {
+    expect(validatePassword('PASSWORD1!')).toBe('Password must contain a lowercase letter');
+  });
+
+  test('validatePassword - no number', () => {
+    expect(validatePassword('Password!')).toBe('Password must contain a number');
+  });
+
+  test('validatePassword - no special char', () => {
+    expect(validatePassword('Password1')).toBe('Password must contain a special character');
+  });
+
+  test('validatePassword - valid', () => {
+    expect(validatePassword('Password1!')).toBe('');
+  });
+
+  // Confirm Password
+  test('validateConfirmPassword - empty', () => {
+    expect(validateConfirmPassword('Password1!', '')).toBe('Confirm password is required');
+  });
+
+  test('validateConfirmPassword - mismatch', () => {
+    expect(validateConfirmPassword('Password1!', 'Password2!')).toBe('Passwords do not match');
+  });
+
+  test('validateConfirmPassword - match', () => {
+    expect(validateConfirmPassword('Password1!', 'Password1!')).toBe('');
+  });
 });
