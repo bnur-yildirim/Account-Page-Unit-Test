@@ -21,10 +21,15 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cd test
-        npm install
+        cd test  
+        npm install  
+
+    - name: Install crypto polyfill
+      run: |
+        cd test  
+        npm install crypto  
 
     - name: Run Vitest tests
       run: |
-        cd test
-        npm run test
+        cd test  
+        npm run test  
