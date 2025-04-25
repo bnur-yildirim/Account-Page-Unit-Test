@@ -25,4 +25,17 @@ describe('Validation Tests', () => {
   test('validateName - valid name', () => {
     expect(validateName('Süleyman')).toBe('');
   });
+
+  // Email Tests
+      test('validateEmail - empty', () => {
+        expect(validateEmail('')).toBe('Email is required');
+      });
+    
+      test('validateEmail - invalid format', () => {
+        expect(validateEmail('test@wrong')).toBe('Invalid email format');
+      });
+    
+      test('validateEmail - valid', () => {
+        expect(validateEmail('test@example.com')).toBe('');
+      });
 });
