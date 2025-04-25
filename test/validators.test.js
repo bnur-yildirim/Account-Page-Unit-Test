@@ -6,7 +6,7 @@ import {
   validatePassword,
   validateConfirmPassword,
   validateDateOfBirth
-} from '../utils/validators';
+} from './src/utils/validators';
 
 describe('Validation Tests', () => {
   // Name Tests
