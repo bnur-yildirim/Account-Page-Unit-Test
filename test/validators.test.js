@@ -76,4 +76,25 @@ describe('Validation Tests', () => {
   test('validateConfirmPassword - match', () => {
     expect(validateConfirmPassword('Password1!', 'Password1!')).toBe('');
   });
+  // Date of Birth Tests
+  test('validateDateOfBirth - empty', () => {
+    expect(validateDateOfBirth('')).toBe('Date of birth is required');
+  });
+
+  test('validateDateOfBirth - wrong format', () => {
+    expect(validateDateOfBirth('2020-12-01')).toBe('Date must be in dd/mm/yyyy format');
+  });
+
+  test('validateDateOfBirth - future date', () => {
+    expect(validateDateOfBirth('01/01/2100')).toBe('Date of birth cannot be in the future');
+  });
+
+  test('validateDateOfBirth - under 13', () => {
+    const recentYear = new Date().getFullYear() - 10;
+    expect(validateDateOfBirth(`01/01/${recentYear}`)).toBe('You must be at least 13 years old');
+  });
+
+  test('validateDateOfBirth - valid', () => {
+    expect(validateDateOfBirth('01/01/2000')).toBe('');
+  });
 });
